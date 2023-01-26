@@ -1,35 +1,43 @@
-//business logic//
-function add(number1, number2) {
-  return number1 + number2;
-}  
+// Business Logic
+function add(num1, num2) {
+  return num1 + num2;
+}
 
-//user interface logic//
-const number1 = parseInt(prompt("Enter a number:"));
-const number2 = parseInt(prompt("Enter another number:"));
+function subtract(num1, num2) {
+  return num1 - num2;
+}
 
-//window.alert(add(number1, number2));//
-const additionResult = add(number1, number2);
-window.alert(additionResult);
+function multiply(num1, num2) {
+  return num1 * num2;
+}
 
+function divide(num1, num2) {
+  return num1 / num2;
+}
 
+// User Interface Logic
+function handleCalculation(event) {
+  event.preventDefault();
+  const number1 = parseInt(document.querySelector("input#input1").value);
+  const number2 = parseInt(document.querySelector("input#input2").value);
+  const operator = document.querySelector("input[name='operator']:checked").value;
+  // the code to get and process form values will go here!
 
+  let result;
+  if (operator === "add") {
+    result = add(number1, number2);
+  } else if (operator === "subtract") {
+    result = subtract(number1, number2);
+  } else if (operator === "multiply") {
+    result = multiply(number1, number2);
+  } else if (operator === "divide") {
+    result = divide(number1, number2);
+  }
 
+  document.getElementById("output").innerText = result;
+}
 
-
-
-
-//function saySomething(whatToSay) {//
-  //window.alert(whatToSay);//
-//}//
-
-//function add(number1, number2) {//
-  //return number1 + number2;//
-//}//
-
-
-//const result = add(3, 5);//
-//const outputText = "The sum is " + result + ".";//
-//saySomething(outputText);//
-
-//saySomething("hi");//
-//saySomething("The sum is " + add(3,5) + ".");//
+window.addEventListener("load", function() {
+  const form = document.getElementById("calculator");
+  form.addEventListener("submit", handleCalculation);
+});
